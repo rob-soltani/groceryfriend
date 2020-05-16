@@ -22,67 +22,97 @@
       crossorigin="anonymous"></script>
     <script src="semantic/dist/semantic.min.js"></script>
 
-    <style media="screen">
+    <script>
+      $(document)
+        .ready(function() {
+          $('.ui.form')
+            .form({
+              fields: {
+                email: {
+                  identifier  : 'email',
+                  rules: [
+                    {
+                      type   : 'empty',
+                      prompt : 'Please enter your e-mail'
+                    },
+                    {
+                      type   : 'email',
+                      prompt : 'Please enter a valid e-mail'
+                    }
+                  ]
+                },
+                password: {
+                  identifier  : 'password',
+                  rules: [
+                    {
+                      type   : 'empty',
+                      prompt : 'Please enter your password'
+                    },
+                    {
+                      type   : 'length[6]',
+                      prompt : 'Your password must be at least 6 characters'
+                    }
+                  ]
+                }
+              }
+            })
+          ;
+        })
+      ;
+    </script>
 
+    <style media="screen">
+      body {
+        background-color: #DADADA;
+      }
+      body > .grid {
+        height: 100%;
+      }
+      .image {
+        margin-top: -100px;
+      }
+      .column {
+        max-width: 450px;
+      }
     </style>
   </head>
   <body>
-    <div id="message">
-      The Domain is Setup
+    <div class="ui middle aligned center aligned grid">
+      <div class="column" style="text-align:center;">
+        <img class="ui tiny image centre" src="/img/Grocery Friend Logo.png" style="margin:auto">
+        <h2 class="ui image header">
+          <div class="content">
+            <h1 style="margin: 0em;">Grocery Friend</h1>
+            <h3 style="margin: 0em;"><i>The Way to Grocery Shop in the New Era</i></h3>
+          </div>
+        </h2>
+        <form class="ui large form">
+          <div class="ui stacked segment">
+            <div class="field">
+              <div class="ui left icon input">
+                <i class="user icon"></i>
+                <input type="text" name="email" placeholder="E-mail address">
+              </div>
+            </div>
+            <div class="field">
+              <div class="ui left icon input">
+                <i class="lock icon"></i>
+                <input type="password" name="password" placeholder="Password">
+              </div>
+            </div>
+            <div class="ui fluid large green submit button">Login</div>
+            <br />
+            Forgot your password? <a href="#">Reset it here</a>
+          </div>
 
-      <div class="ui labeled button" tabindex="0">
-        <div class="ui button">
-          <i class="heart icon"></i> Like
-        </div>
-        <a class="ui basic label">
-          2,048
-        </a>
-      </div>
-      <div class="ui left labeled button" tabindex="0">
-        <a class="ui basic right pointing label">
-          2,048
-        </a>
-        <div class="ui button">
-          <i class="heart icon"></i> Like
-        </div>
-      </div>
-      <div class="ui left labeled button" tabindex="0">
-        <a class="ui basic label">
-          1,048
-        </a>
-        <div class="ui icon button">
-          <i class="fork icon"></i>
-        </div>
-      </div>
+          <div class="ui error message"></div>
 
-      <h2>Welcome</h2>
-      <h1>Firebase Hosting Setup Complete</h1>
-      <p>You're seeing this because you've successfully setup Firebase Hosting. Now it's time to go build something extraordinary!</p>
-      <a target="_blank" href="https://firebase.google.com/docs/hosting/">Open Hosting Documentation</a>
+        </form>
+
+        <div class="ui message">
+          New to Grocery Friend? <a href="#">Join Us Here</a>
+        </div>
+      </div>
     </div>
-    <p id="load">Firebase SDK Loading&hellip;</p>
-
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
-        // // The Firebase SDK is initialized and available here!
-        //
-        // firebase.auth().onAuthStateChanged(user => { });
-        // firebase.database().ref('/path/to/ref').on('value', snapshot => { });
-        // firebase.messaging().requestPermission().then(() => { });
-        // firebase.storage().ref('/path/to/ref').getDownloadURL().then(() => { });
-        //
-        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
-
-        try {
-          let app = firebase.app();
-          let features = ['auth', 'database', 'messaging', 'storage'].filter(feature => typeof app[feature] === 'function');
-          document.getElementById('load').innerHTML = `Firebase SDK loaded with ${features.join(', ')}`;
-        } catch (e) {
-          console.error(e);
-          document.getElementById('load').innerHTML = 'Error loading the Firebase SDK, check the console.';
-        }
-      });
-    </script>
   </body>
 </html>
