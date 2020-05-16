@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Grocery Friend</title>
+    <title>Grocery Friend - Sign Up</title>
 
     <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-app.js"></script>
@@ -42,9 +42,10 @@
       integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
       crossorigin="anonymous"></script>
     <script src="semantic/dist/semantic.min.js"></script>
+    
 
     <script>
-    
+
     </script>
 
     <style media="screen">
@@ -72,12 +73,38 @@
             <h3 style="margin: 0em;"><i>The Way to Grocery Shop in the New Era</i></h3>
           </div>
         </h2>
-        <form class="ui large form">
-          <div class="ui error message"></div>
+        <form class="ui large form" id="SignUpForm">
+          <div class="ui error message">
+            
+          </div>
           <div class="ui stacked segment">
+            <div class= "field">
+              <div class="ui left icon input">
+                <i class= "user icon"></i>
+                <input type="text" name="FirstName" placeholder="First Name">
+               </div>
+            </div>
+            <div class="field">
+                <div class="ui left icon input">
+                  <i class="user icon"></i>
+                  <input type="text" name="LastName" placeholder="Last Name">
+                </div>
+            </div>
+            <div class="field">
+                <div class="ui left icon input">
+                  <i class="map marker alternate icon"></i>
+                  <input type="text" name="Address" placeholder="Address">
+                </div>
+              </div>
+              <div class="field">
+                <div class="ui left icon input">
+                  <i class="phone icon"></i>
+                  <input type="text" name="Phone" placeholder="555-5555-555">
+                </div>
+              </div>
             <div class="field">
               <div class="ui left icon input">
-                <i class="user icon"></i>
+                <i class="at icon"></i>
                 <input type="text" name="email" placeholder="E-mail address" id="email">
               </div>
             </div>
@@ -87,9 +114,9 @@
                 <input type="password" name="password" placeholder="Password" id="password">
               </div>
             </div>
-            <input class="ui fluid medium green submit button" id="submit" type="submit" value="Sign In"/>
-            <br />
-            Forgot your password? <a href="#">Reset it here</a>
+
+            <input class="ui fluid medium green submit button" type="submit" value="Sign Up" />
+          
           </div>
 
 
@@ -97,10 +124,10 @@
         </form>
 
         <div class="ui message">
-          New to Grocery Friend? <a href="signup.html">Join Us Here</a>
+          Already have an account? <a href="index.html">Sign in Here</a>
         </div>
       </div>
     </div>
-    <script src="js/signin/signin.js"></script>
+    <script src="js/signup/signup.js"></script>
   </body>
 </html>

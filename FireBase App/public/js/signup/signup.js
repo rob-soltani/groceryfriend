@@ -1,0 +1,122 @@
+// Semantic UI Form Validation
+$(document)
+.ready(function() {
+  $('.ui.form')
+    .form({
+      fields: {
+        firstname: {
+          identifier  : 'FirstName',
+          rules: [
+            {
+              type   : 'empty',
+              prompt : 'Please enter your first name'
+            },
+            {
+              type   : 'length[2]',
+              prompt : 'Please enter a name of at least two characters.'
+            }
+          ]
+        },
+        lastname: {
+          identifier  : 'LastName',
+          rules: [
+            {
+              type   : 'empty',
+              prompt : 'Please enter your Last Name'
+            },
+            {
+              type   : 'length[2]',
+              prompt : 'Please enter a valid name'
+            }
+          ]
+        },
+        
+        email: {
+          identifier  : 'email',
+          rules: [
+            {
+              type   : 'empty',
+              prompt : 'Please enter your e-mail'
+            },
+            {
+              type   : 'email',
+              prompt : 'Please enter a valid e-mail'
+            }
+          ]
+        },
+        password: {
+          identifier  : 'password',
+          rules: [
+            {
+              type   : 'empty',
+              prompt : 'Please enter your password'
+            },
+            {
+              type   : 'length[6]',
+              prompt : 'Your password must be at least 6 characters'
+            }
+          ]
+        },
+        address: {
+          identifier  : 'Address',
+          rules: [
+            {
+              type   : 'empty',
+              prompt : 'Please enter your address'
+            }
+          ]
+        },
+        phone: {
+          identifier  : 'phone',
+          rules: [
+            {
+              type   : 'empty',
+              prompt : 'Please enter your phone number'
+            },
+            {
+              type   : 'length[11]',
+              prompt : 'Please enter a valid phone number, including area code'
+            }
+          ]
+        },
+      },
+      onSuccess: function(event, fields) {
+
+        event.preventDefault();
+
+        SignUp();
+
+      }           
+    })
+  ;
+});
+
+
+var SignUp = function()
+{
+
+   // Get form fields
+   const email =  document.getElementById("email").value;
+   const password =  document.getElementById("password").value;
+
+   auth.createUserWithEmailAndPassword(email, password)
+   .then(credential =>
+    {
+      window.location.replace("index.html");
+    })
+   .catch(function(error) {
+
+      var errorCode = error.code;
+      var errorMessage = error.message;
+
+      $('.ui.error.message').html(
+         '<ul class="list"><li>' + errorMessage + '</li></ul>'         
+      );
+
+      $('.ui.error.message').css(
+        'display', 'block'
+      );
+
+   });
+
+}
