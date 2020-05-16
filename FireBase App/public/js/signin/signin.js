@@ -23,10 +23,6 @@ $(document)
             {
               type   : 'empty',
               prompt : 'Please enter your password'
-            },
-            {
-              type   : 'length[6]',
-              prompt : 'Your password must be at least 6 characters'
             }
           ]
         }
@@ -51,8 +47,26 @@ var SignIn = function()
    const email =  document.getElementById("email").value;
    const password =  document.getElementById("password").value;
 
-   auth.
+   auth.signInWithEmailAndPassword(email, password)
+   .then(credentials => {
+      console.log(credentials.user);
 
-   window.location.replace("index.html");
+   })
+   .catch(function(error) {
+
+      var errorCode = error.code;
+      var errorMessage = error.message;
+
+      $('.ui.error.message').html(
+         '<ul class="list"><li>' + errorMessage + '</li></ul>'         
+      );
+
+      $('.ui.error.message').css(
+        'display', 'block'
+      );
+
+   });
+
+   //window.location.replace("index.html");
 
 }
