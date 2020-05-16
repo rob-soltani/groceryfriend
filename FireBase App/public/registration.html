@@ -21,98 +21,121 @@
       integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
       crossorigin="anonymous"></script>
     <script src="semantic/dist/semantic.min.js"></script>
+<!-- Google Place API-->
+<script src="js/jquery.min.js"></script>
+<script type="text/javascript"  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhDjrojznr21I2sgT98R62BzQGrgCTrec&libraries=places"></script>
+<script> var searchInput = 'search_input';</script>
 
-    <script>
-      $(document)
-        .ready(function() {
-          $('.ui.form')
-            .form({
-              fields: {
-                firstname: {
-                  identifier  : 'FirstName',
-                  rules: [
-                    {
-                      type   : 'empty',
-                      prompt : 'Please enter your First Name'
-                    },
-                    {
-                      type   : 'length[2]',
-                      prompt : 'Please enter a valid name'
-                    }
-                  ]
-                },
-                lastname: {
-                  identifier  : 'LastName',
-                  rules: [
-                    {
-                      type   : 'empty',
-                      prompt : 'Please enter your Last Name'
-                    },
-                    {
-                      type   : 'length[2]',
-                      prompt : 'Please enter a valid name'
-                    }
-                  ]
-                },
-                
-                email: {
-                  identifier  : 'email',
-                  rules: [
-                    {
-                      type   : 'empty',
-                      prompt : 'Please enter your e-mail'
-                    },
-                    {
-                      type   : 'email',
-                      prompt : 'Please enter a valid e-mail'
-                    }
-                  ]
-                },
-                password: {
-                  identifier  : 'password',
-                  rules: [
-                    {
-                      type   : 'empty',
-                      prompt : 'Please enter your password'
-                    },
-                    {
-                      type   : 'length[6]',
-                      prompt : 'Your password must be at least 6 characters'
-                    }
-                  ]
-                },
-                address: {
-                  identifier  : 'Address',
-                  rules: [
-                    {
-                      type   : 'empty',
-                      prompt : 'Please enter your address'
-                    },
-                    {
-                      type   : 'email',
-                      prompt : 'Please enter a valid street address'
-                    }
-                  ]
-                },
-                phone: {
-                  identifier  : 'phone',
-                  rules: [
-                    {
-                      type   : 'empty',
-                      prompt : 'Please enter your phone number'
-                    },
-                    {
-                      type   : 'length[11]',
-                      prompt : 'Please enter a valid phone number, including area code'
-                    }
-                  ]
-                },
+<script>
+    
+   $(document)
+     .ready(function() {
+         var autocomplete;
+ autocomplete = new google.maps.places.Autocomplete((document.getElementById(searchInput)), {
+     types: ['geocode'],
+ });
+ 
+ google.maps.event.addListener(autocomplete, 'place_changed', function () {
+     var near_place = autocomplete.getPlace();
+     document.getElementById('loc_lat').value = near_place.geometry.location.lat();
+     document.getElementById('loc_long').value = near_place.geometry.location.lng();
+       
+ </script>
+  
+ <!-- Registration form-->
+<script>
+    $(document)
+      .ready(function() {
+        $('.ui.form')
+          .form({
+            fields: {
+              email: {
+                identifier  : 'email',
+                rules: [
+                  {
+                    type   : 'empty',
+                    prompt : 'Please enter your e-mail'
+                  },
+                  {
+                    type   : 'email',
+                    prompt : 'Please enter a valid e-mail'
+                  }
+                ]
+              },
+              firstname: {
+                identifier  : 'firstname',
+                rules: [
+                  {
+                    type   : 'empty',
+                    prompt : 'Please enter your first name'
+                  },
+                  {
+                    type   : 'length[3]',
+                    prompt : 'Please enter a valid name'
+                  }
+                ]
+              },
+              lastname: {
+                identifier  : 'lastname',
+                rules: [
+                  {
+                    type   : 'empty',
+                    prompt : 'Please enter your last name'
+                  },
+                  {
+                    type   : 'length[3]',
+                    prompt : 'Please enter a valid name'
+                  }
+                ]
+              },
+              phone: {
+                identifier  : 'phone',
+                rules: [
+                  {
+                    type   : 'empty',
+                    prompt : 'Please enter your phone number'
+                  },
+                  {
+                    type   : 'length[11]',
+                    prompt : 'Please enter your phone number, including area code and hyphen'
+                  }
+                ]
+              },
+              address: {
+                identifier  : 'address',
+                rules: [
+                  {
+                    type   : 'empty',
+                    prompt : 'Please enter your address'
+                  },
+                  {
+                    type   : 'length[3]',
+                    prompt : 'Please enter a valid address'
+                  }
+                ]
+              },
+              password: {
+                identifier  : 'password',
+                rules: [
+                  {
+                    type   : 'empty',
+                    prompt : 'Please enter your password'
+                  },
+                  {
+                    type   : 'length[6]',
+                    prompt : 'Your password must be at least 6 characters'
+                  }
+                ]
               }
-            })
-          ;
-        })
-      ;
-    </script>
+            }
+          })
+        ;
+      })
+    ;
+  </script>
+
+
+   
 
     <style media="screen">
       body {
@@ -143,38 +166,42 @@
           <div class="ui stacked segment">
             <div class= "field">
               <div class="ui left icon input">
-                <i class= "name icon"></i>
-                <input type="text" name="FirstName" placeholder="Fist Name">
+                <i class= "address card icon"></i>
+                <input type="text" name="firstname" placeholder="First Name"/>
                </div>
             </div>
             <div class="field">
                 <div class="ui left icon input">
-                  <i class="user icon"></i>
-                  <input type="text" name="LastName" placeholder="Last Name">
+                  <i class="address card icon"></i>
+                  <input type="text" name="lastname" placeholder="Last Name"/>
                 </div>
               </div>
             <div class="field">
               <div class="ui left icon input">
                 <i class="user icon"></i>
-                <input type="text" name="email" placeholder="E-mail address">
+                <input type="text" name="email" placeholder="E-mail address"/>
               </div>
             </div>
             <div class="field">
               <div class="ui left icon input">
                 <i class="lock icon"></i>
-                <input type="password" name="password" placeholder="Password">
+                <input type="password" name="password" placeholder="Password"/>
               </div>
             </div>
+
+
             <div class="field">
                 <div class="ui left icon input">
-                  <i class="map marker alternate"></i>
-                  <input type="text" name="Address" placeholder="Address">
+                  <i class="map marker alternate icon"></i>
+                  <input type="text" id="search_input" name="address" placeholder="Address"/>
                 </div>
               </div>
+
+
               <div class="field">
                 <div class="ui left icon input">
-                  <i class="phone"></i>
-                  <input type="text" name="Phone" placeholder="555-5555-555">
+                  <i class="phone icon"></i>
+                  <input type="text" name="phone" placeholder="555-5555-555"/>
                 </div>
               </div>
             <div class="ui fluid medium green submit button">Register</div>
