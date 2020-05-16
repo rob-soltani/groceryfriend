@@ -28,6 +28,33 @@
           $('.ui.form')
             .form({
               fields: {
+                firstname: {
+                  identifier  : 'FirstName',
+                  rules: [
+                    {
+                      type   : 'empty',
+                      prompt : 'Please enter your First Name'
+                    },
+                    {
+                      type   : 'length[2]',
+                      prompt : 'Please enter a valid name'
+                    }
+                  ]
+                },
+                lastname: {
+                  identifier  : 'LastName',
+                  rules: [
+                    {
+                      type   : 'empty',
+                      prompt : 'Please enter your Last Name'
+                    },
+                    {
+                      type   : 'length[2]',
+                      prompt : 'Please enter a valid name'
+                    }
+                  ]
+                },
+                
                 email: {
                   identifier  : 'email',
                   rules: [
@@ -53,7 +80,33 @@
                       prompt : 'Your password must be at least 6 characters'
                     }
                   ]
-                }
+                },
+                address: {
+                  identifier  : 'Address',
+                  rules: [
+                    {
+                      type   : 'empty',
+                      prompt : 'Please enter your address'
+                    },
+                    {
+                      type   : 'email',
+                      prompt : 'Please enter a valid street address'
+                    }
+                  ]
+                },
+                phone: {
+                  identifier  : 'phone',
+                  rules: [
+                    {
+                      type   : 'empty',
+                      prompt : 'Please enter your phone number'
+                    },
+                    {
+                      type   : 'length[11]',
+                      prompt : 'Please enter a valid phone number, including area code'
+                    }
+                  ]
+                },
               }
             })
           ;
@@ -90,7 +143,7 @@
           <div class="ui stacked segment">
             <div class= "field">
               <div class="ui left icon input">
-                <i class="user icon"></i>
+                <i class= "name icon"></i>
                 <input type="text" name="FirstName" placeholder="Fist Name">
                </div>
             </div>
@@ -114,19 +167,19 @@
             </div>
             <div class="field">
                 <div class="ui left icon input">
-                  <i class="user icon"></i>
+                  <i class="map marker alternate"></i>
                   <input type="text" name="Address" placeholder="Address">
                 </div>
               </div>
               <div class="field">
                 <div class="ui left icon input">
-                  <i class="user icon"></i>
-                  <input type="text" name="Phone" placeholder="xxxxxxxxx">
+                  <i class="phone"></i>
+                  <input type="text" name="Phone" placeholder="555-5555-555">
                 </div>
               </div>
-            <div class="ui fluid medium green submit button">Login</div>
+            <div class="ui fluid medium green submit button">Register</div>
             <br />
-            Forgot your password? <a href="#">Reset it here</a>
+           
           </div>
 
           <div class="ui error message"></div>
@@ -134,7 +187,7 @@
         </form>
 
         <div class="ui message">
-          New to Grocery Friend? <a href="#">Join Us Here</a>
+          Already Have an Account? <a href="index.html">Login Here</a>
         </div>
       </div>
     </div>
