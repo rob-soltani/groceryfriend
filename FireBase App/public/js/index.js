@@ -2,42 +2,46 @@ auth.onAuthStateChanged(user => {
    if (user)
   {
     $('#SignOutButton').css('display', 'inline-block');
-    $('#WelcomeMessage').css('display', 'inline-block');
+    $('#WelcomeMessage').css('display', 'inline-block');  
 
-    $('#UserNameContainer').html('[NO NAME YET]');
-
-    db.collection("Test")   //.where("content", "==", "meat1")
+    db.collection("Users")
+    .where("UserID", "==", user.uid)
     .get()
       .then(function(snapshot) 
       {
         console.log(snapshot);
-        //$('#SampleDataFromDB').html(snapshot.docs);
-        console.log(snapshot.docs);
-        var data = snapshot.docs;
 
-        data.forEach(doc => {
+        $('#UserNameContainer').html(snapshot.docs[0].data().FirstName);
 
-            var CurrentContent = $('#SampleDataFromDB').html();
+        // snapshot.docs.forEach(doc => {
 
-            CurrentContent = CurrentContent + doc.data().title + '<br />';
+        //   var CurrentContent = $('#SampleDataFromDB').html();
 
-            $('#SampleDataFromDB').html(CurrentContent);
+        //   CurrentContent = CurrentContent + doc.data().title + '<br />';
+
+        //   $('#SampleDataFromDB').html(CurrentContent);
           
-        });
+        // });
 
-      })
-      .catch(function(error) {
+      });
 
-        var errorCode = error.code;
-        var errorMessage = error.message;
+      db.collection("cats")
+      .get()
+        .then(function(snapshot) 
+        {
+          console.log(snapshot);
 
-        console.log(errorMessage);
+          snapshot.docs.forEach(doc => {
   
+            var CurrentContent = $('#SampleDataFromDB').html();
   
-     });;
-
-
-    
+            CurrentContent = CurrentContent + doc.data().name + '<br />';
+  
+            $('#SampleDataFromDB').html(CurrentContent);
+            
+          });
+  
+        });  
 
   }
   else

@@ -96,13 +96,44 @@ var SignUp = function()
 {
 
    // Get form fields
+   const FirstName =  document.getElementById("FirstName").value;
+   const LastName =  document.getElementById("LastName").value;
+   const Address =  document.getElementById("Address").value;
+   const Phone =  document.getElementById("Phone").value;
    const email =  document.getElementById("email").value;
    const password =  document.getElementById("password").value;
 
    auth.createUserWithEmailAndPassword(email, password)
-   .then(credential =>
+   .then(credentials =>
     {
-      window.location.replace("index.html");
+      const UserID = credentials.user.uid;
+      
+      db.collection('Users').add({
+        UserID: UserID,
+        FirstName: FirstName,
+        LastName: LastName,
+        Address: Address,
+        Phone: Phone,        
+      })
+      .then(() =>
+      {
+        window.location.replace("index.html");
+      })
+      .catch(function(error) {
+
+        var errorCode = error.code;
+        var errorMessage = error.message;
+  
+        $('.ui.error.message').html(
+           '<ul class="list"><li>' + errorMessage + '</li></ul>'         
+        );
+  
+        $('.ui.error.message').css(
+          'display', 'block'
+        );
+  
+     });
+
     })
    .catch(function(error) {
 
