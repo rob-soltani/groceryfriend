@@ -30,7 +30,7 @@
    
  
  google.maps.event.addDomListener(window, 'load', function () {
-     var places = new google.maps.places.Autocomplete(document.getElementById('search_input'));
+     var places = new google.maps.places.Autocomplete(document.getElementById('find'));
  })      
  </script>
   
@@ -185,7 +185,7 @@
             <div class="field">
                 <div class="ui left icon input">
                   <i class="map marker alternate icon"></i>
-                  <input type="text" id="search_input" name="address" placeholder="Address"/>
+                  <input type="text" id="find" name="address" placeholder="Address"/>
                 </div>
               </div>
 
