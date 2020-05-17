@@ -1,3 +1,11 @@
+auth.onAuthStateChanged(user => {
+  if (user)
+ {
+    window.location.replace("index.html");
+
+ }
+});
+
 // Semantic UI Form Validation
 $(document)
 .ready(function() {
@@ -49,7 +57,7 @@ var SignIn = function()
 
    auth.signInWithEmailAndPassword(email, password)
    .then(credentials => {
-      console.log(credentials.user);
+      window.location.replace("index.html");
 
    })
    .catch(function(error) {
@@ -67,6 +75,5 @@ var SignIn = function()
 
    });
 
-   //window.location.replace("index.html");
 
 }

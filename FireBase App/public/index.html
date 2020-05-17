@@ -27,12 +27,12 @@
             measurementId: "G-03WMYG12X9"
         };
         // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
+        var defaultProject = firebase.initializeApp(firebaseConfig);
         firebase.analytics();
 
         // Making auth and firestore available
         const auth = firebase.auth();
-        const db = firebase.firestore();
+        const db = defaultProject.firestore();
 
     </script>
 
@@ -50,6 +50,15 @@
 
   </head>
   <body>
+
+    <div class="ui message" style="display:none" id="WelcomeMessage">
+      <div class="header">
+        Welcome <a id="UserNameContainer"></a>
+      </div>
+      <p>Yay guys we got so far! Here is some test data from the db:</p>
+      <p id="SampleDataFromDB"></p>
+    </div>
+
     <a class="ui active button" href="signout.html" style="display:none" id="SignOutButton">
       <i class="power off icon"></i>
       Sign Out
