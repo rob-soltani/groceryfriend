@@ -22,24 +22,16 @@
       crossorigin="anonymous"></script>
     <script src="semantic/dist/semantic.min.js"></script>
 <!-- Google Place API-->
-<script src="js/jquery.min.js"></script>
-<script type="text/javascript"  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhDjrojznr21I2sgT98R62BzQGrgCTrec&libraries=places"></script>
-<script> var searchInput = 'search_input';</script>
 
-<script>
-    
-   $(document)
-     .ready(function() {
-         var autocomplete;
- autocomplete = new google.maps.places.Autocomplete((document.getElementById(searchInput)), {
-     types: ['geocode'],
- });
+<script type="text/javascript"  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhDjrojznr21I2sgT98R62BzQGrgCTrec&libraries=places"></script>
+
+
+<script>   
+   
  
- google.maps.event.addListener(autocomplete, 'place_changed', function () {
-     var near_place = autocomplete.getPlace();
-     document.getElementById('loc_lat').value = near_place.geometry.location.lat();
-     document.getElementById('loc_long').value = near_place.geometry.location.lng();
-       
+ google.maps.event.addDomListener(window, 'load', function () {
+     var places = new google.maps.places.Autocomplete(document.getElementById('search_input'));
+ })      
  </script>
   
  <!-- Registration form-->
@@ -109,7 +101,7 @@
                     prompt : 'Please enter your address'
                   },
                   {
-                    type   : 'length[3]',
+                    type   : 'empty',
                     prompt : 'Please enter a valid address'
                   }
                 ]
@@ -193,7 +185,7 @@
             <div class="field">
                 <div class="ui left icon input">
                   <i class="map marker alternate icon"></i>
-                  <input type="text" id="search_input" name="address" placeholder="Address"/>
+                  <input type="text" id="search_input"  placeholder="Address"/>
                 </div>
               </div>
 
