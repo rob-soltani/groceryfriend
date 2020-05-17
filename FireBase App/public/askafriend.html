@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Grocery Friend - Receive - Ask a Friend</title>
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-firestore.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+        https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-analytics.js"></script>
+
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyBxPpHT8ND6pWEARQASS492hoIqJioWlrA",
+            authDomain: "grocery-friend.firebaseapp.com",
+            databaseURL: "https://grocery-friend.firebaseio.com",
+            projectId: "grocery-friend",
+            storageBucket: "grocery-friend.appspot.com",
+            messagingSenderId: "106473375196",
+            appId: "1:106473375196:web:694d6891628d210314bb19",
+            measurementId: "G-03WMYG12X9"
+        };
+        // Initialize Firebase
+        var defaultProject = firebase.initializeApp(firebaseConfig);
+        firebase.analytics();
+
+        // Making auth and firestore available
+        const auth = firebase.auth();
+        const db = defaultProject.firestore();
+
+    </script>
+
+    <link rel="stylesheet" type="text/css" href="semantic/dist/semantic.min.css">
+    <script
+      src="https://code.jquery.com/jquery-3.1.1.min.js"
+      integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+      crossorigin="anonymous"></script>
+    <script src="semantic/dist/semantic.min.js"></script>
+    <style media="screen">
+      body > .grid {
+        height: 100%;
+      }
+
+  
+    </style>
+  </head>
+  
+  <body>
+
+
+    <div class="ui middle aligned center aligned grid">
+      <div class="column" style="text-align:center;">
+        
+
+
+
+        <div class="ui image header">
+          <div class="content" >
+            <img class="ui tiny image centre" src="/img/Grocery Friend Logo.png" style="margin:auto;height:50px;width:auto;margin-bottom: 10px;">
+            <h3 style="margin: 0em;">Grocery Friend</h3>
+            <h5 style="margin: 0em;"><i>The Way to Grocery Shop in the New Era</i></h5>
+          </div>
+        </div>
+        <br />
+        <div id="WelcomeMessage">
+          <div class="header">
+            Welcome <a id="UserNameContainer"></a>!
+          </div>
+          <a href="index.html">Home</a> -> <a href="receive.html">Receive</a> -> Ask a Friend       
+        </div>
+
+
+
+        <div class="ui steps">
+          <div class="active step" id="SteapHeader_ShoppingList">
+            <i class="clipboard icon"></i>
+            <div class="content">
+              <div class="title">Shopping List</div>
+            </div>
+          </div>
+          <div class="disabled step"  id="SteapHeader_Destination">
+            <i class="home icon"></i>
+            <div class="content">
+              <div class="title">Destination</div>
+            </div>
+          </div>
+          <div class="disabled step"   id="SteapHeader_Schedule">
+            <i class="calendar alternate outline icon"></i>
+            <div class="content">
+              <div class="title">Schedule</div>
+            </div>
+          </div>
+          <div class="disabled step" id="SteapHeader_Summary">
+            <i class="calendar check outline icon"></i>
+            <div class="content">
+              <div class="title">Summary</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ui segment" style="max-width:720px;margin:auto; padding:15px;display:none" id="TheFirstStep_ShoppingList">
+          <div class="field" style="text-align: left; display: inline-block;">
+            <label><b>Item</b></label>
+            <br />
+            <div class="ui left icon input">
+              <i class="info icon"></i>
+              <input type="text" name="item" placeholder="e.g. potatoes" id="TheSecondStep_ShoppingList_item">
+            </div>
+          </div>
+
+          &ensp;
+
+          <div class="field" style="text-align: left; display: inline-block;">
+            <label><b>Amount</b></label>
+            <br />
+            <div class="ui left icon input">
+              <i class="th list icon"></i>
+              <input type="text" name="amount" placeholder="e.g. 2L or 7X" id="TheSecondStep_ShoppingList_amount">
+            </div>
+          </div>
+
+          &ensp;
+
+          <input type="button" value="Add" class="ui green button" onclick="javascript:AddItem()" />
+
+          <table class="ui celled striped table" id="TheFirstStep_ShoppingList_Table">
+            <thead>
+              <tr>
+                <th colspan="1">
+                  Item
+                </th>
+                <th colspan="">
+                  Amount
+                </th>
+                <th colspan="1" style="text-align:center">
+                  Remove
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+     
+            </tbody>
+          </table>
+
+          <input type="button" value="Back" class="ui active button" id="TheFirstStep_ShoppingList_Back" onclick="javascript:window.location.replace('receive.html');"  />
+          <input type="button" value="Next" class="ui green button" id="TheFirstStep_ShoppingList_Next"  onclick="javascript:ChangeStep(2);" />
+
+        </div>
+        
+
+        <div class="ui segment" style="max-width:720px;margin:auto; padding:15px;display:none;" id="TheSecondStep_Destination">
+
+
+          <br /><br />
+
+          <input type="button" value="Back" class="ui active button" id="TheSecondStep_Destination_Back"  onclick="javascript:ChangeStep(1);" />
+          <input type="button" value="Next" class="ui green button" id="TheSecondStep_Destination_Next"  onclick="javascript:ChangeStep(3);"/>
+
+        </div>
+
+        <div class="ui segment" style="max-width:720px;margin:auto; padding:15px;;display:none" id="TheThirdStep_Schedule">
+
+
+          <br /><br />
+
+          <input type="button" value="Back" class="ui active button" id="TheThirdStep_Schedule_Back"  onclick="javascript:ChangeStep(2);" />
+          <input type="button" value="Next" class="ui green button" id="TheThirdStep_Schedule_Next"  onclick="javascript:ChangeStep(4);" />
+
+        </div>
+
+        <div class="ui segment" style="max-width:720px;margin:auto; padding:15px;;display:none" id="TheFourthStep_Summary">
+
+
+          <br /><br />
+
+          <input type="button" value="Back" class="ui active button" id="TheFourthStep_Summary_Back"  onclick="javascript:ChangeStep(3);" />
+          <input type="button" value="Next" class="ui green button" id="TheFourthStep_Summary_Next"  onclick="javascript:SubmitAsk();"/>
+
+        </div>
+
+        <br />
+        <a class="ui active button" href="#" id="SettingsButton">
+          <i class="cog icon"></i>
+          Settings
+        </a>
+
+        <a class="ui active button" href="signout.html" id="SignOutButton">
+          <i class="power off icon"></i>
+          Sign Out
+        </a>
+      </div>
+    </div>
+    <script src="js/askafriend.js"></script>
+  </body>
+</html>
