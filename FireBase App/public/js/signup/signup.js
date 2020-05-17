@@ -113,7 +113,8 @@ var SignUp = function()
         FirstName: FirstName,
         LastName: LastName,
         Address: Address,
-        Phone: Phone,        
+        Phone: Phone, 
+        Email: email,         
       })
       .then(() =>
       {
