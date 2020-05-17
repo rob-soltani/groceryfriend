@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Grocery Friend - Deliver</title>
+    <title>Grocery Friend - Receive - Help a Friend</title>
 
     <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-app.js"></script>
@@ -47,9 +47,7 @@
         height: 100%;
       }
 
-      .column {
-        max-width: 350px;
-      }
+  
     </style>
   </head>
   
@@ -59,6 +57,7 @@
     <div class="ui middle aligned center aligned grid">
       <div class="column" style="text-align:center;">
         
+
 
 
         <div class="ui image header">
@@ -73,59 +72,14 @@
           <div class="header">
             Welcome <a id="UserNameContainer"></a>!
           </div>
-          <a href="index.html">Home</a> -> Deliver          
+          <a href="index.html">Home</a> -> <a href="receive.html">Deliver</a> -> Help a Friend       
         </div>
 
-        <div class="ui two column grid" style="text-align:center; MARGIN:15PX ">
-          <div class="column">
-            <a href="helpafriend.html">
-              <div class="ui fluid card">
-                <div class="content right" style="text-align:center">
-                  <div class="ui tiny image left" >
-                    <img src="img/Apple Privay Icon.png" style="margin-bottom: 15px;" >
-                  </div>
-                  <div class="header" style="font-size:1em">Help a Friend</div>
-                </div>
-              </div>
-            </a>
-          </div>
-          <div class="column">
-            <a href="#">
-              <div class="ui fluid card">
-                <div class="content right" style="text-align:center">
-                  <div class="ui tiny image left" >
-                    <img src="img/Deliveries.png" style="margin-bottom: 10px;" >
-                  </div>
-                  <div class="header" style="font-size:1em">Deliveries</div>
-                </div>
-              </div>
-            </a>
-          </div>
-          <div class="column">
-            <a href="#">
-              <div class="ui fluid card">
-                <div class="content right" style="text-align:center">
-                  <div class="ui tiny image left" >
-                    <img src="img/History.png" style="margin-bottom: 10px;" >
-                  </div>
-                  <div class="header" style="font-size:1em">History</div>
-                </div>
-              </div>
-            </a>
-          </div>
-          <div class="column">
-            <a href="#">
-              <div class="ui fluid card">
-                <div class="content right" style="text-align:center">
-                  <div class="ui tiny image left" >
-                    <img src="img/Preferences.png" style="margin-bottom: 12px;" >
-                  </div>
-                  <div class="header" style="font-size:1em">Preferences</div>
-                </div>
-              </div>
-            </a>
-          </div>
-        </div>  
+
+
+        <img src="img/Help a Friend.jpg" alt="" style="max-width:600px;">
+
+
 
         <br />
         <a class="ui active button" href="#" id="SettingsButton">
@@ -139,6 +93,6 @@
         </a>
       </div>
     </div>
-    <script src="js/index.js"></script>
+    <script src="js/askafriend.js"></script>
   </body>
 </html>

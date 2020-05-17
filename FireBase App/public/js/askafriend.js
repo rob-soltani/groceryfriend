@@ -79,9 +79,42 @@ DisplayStep(CurrentStep);
 
 var ChangeStep = function(Step)
 {
+    if (CurrentStep === 1) 
+    {
+
+        if ($('#TheFirstStep_ShoppingList_Table tr').length < 2)
+        {
+            alert('Please add at least one item.');
+            return;
+        }
+    }
+
     CurrentStep = Step;
     DisplayStep(CurrentStep);
 }
+
+auth.onAuthStateChanged(user => {
+    if (user)
+   {
+     db.collection("Users")
+     .where("UserID", "==", user.uid)
+     .get()
+       .then(function(snapshot) 
+       {
+ 
+         $('#CurrentDefaultAddress').html('&ensp;&ensp;&ensp;&ensp;' + snapshot.docs[0].data().Address);
+ 
+       });
+  
+ 
+   }
+   else
+   {
+     window.location.replace("signin.html");
+   }
+ });
+
+
 
 function uuidv4() {
     return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
